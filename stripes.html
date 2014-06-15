@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/colorpicker.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <article class="col-md-6 col-md-offset-3 panel panel-default">
+        <form class="panel-body">
+            <h1>CSS3 stripes generator</h1>
+            <label>Angle</label>
+            <input type="range" id="stripes-angle" name="stripes-angle" min="0" max="180" value="0" />
+            <input type="text" name="stripe-size-pixels" value="0" />
+            <fieldset>
+                <table class="table" id="colors">
+                    <tr>
+                        <th><label>Stripe color</label></th>
+                        <th><label>Stripe size</label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="stripe-color[]" data-color-id="0" class="colorpicker" value="#ff0">
+                        </td>
+
+                        <td>
+                            <input type="range" id="stripe-size-0" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />
+                            <input type="text" id="stripe-size-pixels-0" class="stripe-size-pixels" name="stripe-size-pixels[]" value="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Gradient</label>
+                            <input type="range" class="gradient" id="gradient-1" name="gradient[1]" min="0" max="50" value="0" />
+                            <input type="text" id="gradient-pixels-1" name="gradient-pixels[1]" value="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="stripe-color[]" data-color-id="1" class="colorpicker" value="#66ff00">
+                        </td>
+
+                        <td>
+                            <input type="range" id="stripe-size-1" class="stripe-size" name="stripe-size[1]" min="1" max="50" value="10" />
+                            <input type="text" id="stripe-size-pixels-1" class="stripe-size-pixels" name="stripe-size-pixels[1]" value="1" />
+                        </td>
+                    </tr>
+                    <tfoot>
+                        <a href="" id="add-color">+Add stripe</a>
+                    </tfoot>
+                </table>
+
+            </fieldset>
+        </form>
+    <!--</article>-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="js/stripes.js"></script>
+
+</body>
+</html>

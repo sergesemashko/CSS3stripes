@@ -9,7 +9,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/colorpicker.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -19,60 +18,93 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-    <article class="col-md-6 col-md-offset-3 panel panel-default">
-        <form class="panel-body">
-            <h1>CSS3 stripes generator</h1>
-            <label>Angle</label>
-            <input type="range" id="stripes-angle" name="stripes-angle" min="0" max="180" value="0" />
-            <input type="text" name="stripe-size-pixels" value="0" />
-            <fieldset>
-                <table class="table" id="colors">
-                    <tr>
-                        <th><label>Stripe color</label></th>
-                        <th><label>Stripe size</label></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input name="stripe-color[]" data-color-id="0" class="colorpicker" value="#ff0">
-                        </td>
+<body class="frame">
+    <div id="test-background" class="frame">
+        <div class="row expand">
+            <main class="container">
 
-                        <td>
-                            <input type="range" id="stripe-size-0" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />
-                            <input type="text" id="stripe-size-pixels-0" class="stripe-size-pixels" name="stripe-size-pixels[]" value="1" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label>Gradient</label>
-                            <input type="range" class="gradient" id="gradient-1" name="gradient[1]" min="0" max="50" value="0" />
-                            <input type="text" id="gradient-pixels-1" name="gradient-pixels[1]" value="1" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input name="stripe-color[]" data-color-id="1" class="colorpicker" value="#66ff00">
-                        </td>
+                <article class="col-md-6 col-md-offset-3 panel panel-default">
+                    <form class="panel-body">
+                        <h1>CSS3 stripes generator (beta)</h1>
+                        <label>Angle</label>
+                        <input type="range" id="stripes-angle" name="stripes-angle" min="0" max="360" value="135"  size="3" maxlength="3" />
+                        <input type="text" id="stripes-angle-deg" value="135" />
+                        <em>deg</em>
+                        <fieldset>
+                            <table class="table" id="colors">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th><label>Stripe color</label></th>
+                                    <th><label>Stripe size</label></th>
+                                    <th><label>Blur</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="" class="remove-color glyphicon glyphicon-remove"></a>
+                                    </td>
+                                    <td>
+                                        <input name="stripe-color[]" class="color" value="f2f2f2">
+                                    </td>
+                                    <td>
+                                        <input type="range" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />
+                                        <input type="text" class="stripe-size-pixels" name="stripe-size-pixels[]" size="3" maxlength="3" value="10" />
+                                        <em>px</em>
+                                    </td>
 
-                        <td>
-                            <input type="range" id="stripe-size-1" class="stripe-size" name="stripe-size[1]" min="1" max="50" value="10" />
-                            <input type="text" id="stripe-size-pixels-1" class="stripe-size-pixels" name="stripe-size-pixels[1]" value="1" />
-                        </td>
-                    </tr>
-                    <tfoot>
-                        <a href="" id="add-color">+Add stripe</a>
-                    </tfoot>
-                </table>
+                                    <td>
+                                        <input type="range" class="stripe-blur" name="stripe-blur[]" min="0" max="100" value="0" />
+                                        <input type="text" class="stripe-blur-percents" name="stripe-blur-percents[]" value="0" size="3" maxlength="3" />
+                                        <em>%</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="" class="remove-color glyphicon glyphicon-remove"></a>
+                                    </td>
+                                    <td>
+                                        <input name="stripe-color[]" class="color" value="dedede">
+                                    </td>
+                                    <td>
+                                        <input type="range" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />
+                                        <input type="text" class="stripe-size-pixels" name="stripe-size-pixels[1]" value="10" size="3" maxlength="3" />
+                                        <em>px</em>
+                                    </td>
+                                    <td>
+                                        <input type="range" class="stripe-blur" name="stripe-blur[]" min="0" max="100" value="0" />
+                                        <input type="text" class="stripe-blur-percents" name="stripe-blur-percents[]" value="0" size="3" maxlength="3" />
+                                        <em>%</em>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <a href=#"" id="add-color">+Add stripe</a>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
 
-            </fieldset>
-        </form>
-    <!--</article>-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/colorpicker/js/bootstrap-colorpicker.js"></script>
-    <script src="js/stripes.js"></script>
+                        </fieldset>
+                    </form>
+                </article>
+            </main>
+
+        </div>
+        <footer class="row">
+
+        </footer>
+    </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jscolor/jscolor.js"></script>
+        <script src="js/stripes.js"></script>
 
 </body>
 </html>

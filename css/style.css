@@ -1,3 +1,32 @@
-body {
+.container {
     padding-top: 2em;
+}
+
+.remove-color,
+.remove-color:hover,
+.remove-color:active,
+.remove-color:visited {
+    color: #ff2101;
+    text-decoration: none;
+}
+
+.stretch-bottom {
+    height: auto;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0pt;
+}
+.frame {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.row {
+    display: table-row;
+}
+.row.expand {
+    height: auto;
 }

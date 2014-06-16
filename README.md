@@ -1,1 +1,2 @@
-# CSS3 striped background generator
+CSS3 striped background generator
+===========

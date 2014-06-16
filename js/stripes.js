@@ -1,4 +1,4 @@
-(function ($, document) {
+(function ($, document, Math, jscolor) {
   'use strict';
 
 
@@ -18,7 +18,7 @@
     function getColors() {
       return $('[name="stripe-color[]"]').toArray().map(function (el) {
         var $tr = $(el).closest('tr');
-        var weight = parseInt($tr.find('.stripe-size').val());
+        var weight = parseInt($tr.find('.stripe-size-pixels').val());
         var blurPercents = parseInt($tr.find('.stripe-blur').val());
         var blur = weight / 100 * blurPercents;
         return {"color": '#' + el.value, "weight": weight, "blur": blur, "blurPercents": blurPercents};
@@ -64,6 +64,53 @@
       return style;
     }
 
+    function compileBackgroundPercents(angle, colors) {
+      var style = "";
+      var gradients = [];
+      var sum = 0;
+      var i = 0;
+      //first color is always background-color
+      if (colors[i]) {
+        style = "background-color:" + colors[i].color + ";";
+        gradients.push('transparent');
+        //half of blur percent of color weight in the beginning
+        gradients.push('transparent ' + (colors[i].weight/2 - colors[i].blur / 2) + '%');
+        sum += colors[i].weight / 2;
+      }
+
+//      red (bkgrnd) 20px
+//      green 30px
+//      yellow 10px
+//
+//      60px = 50%
+
+
+      for (i = 1; i < colors.length; i++) {
+        gradients.push(colors[i].color + ' ' + (sum + colors[i].blur / 2) + "%");
+        gradients.push(colors[i].color + ' ' + (sum + colors[i].weight - colors[i].blur / 2) + "%");
+        sum += colors[i].weight;
+      }
+
+      //lopping the first element
+      i = 0;
+      if (colors[i]) {
+        //half of blur percent of color weight in the end
+        gradients.push('transparent ' + (sum + colors[i].blur / 2) + '%');
+        gradients.push('transparent ' + (sum + colors[i].weight / 2) + '%');
+
+        sum += colors[i].weight / 2;
+      }
+
+//      style += 'background-image: -moz-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+//      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+//      style += 'background-image: -o-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+//      style += 'background-image: -ms-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+      style += 'background-image: repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');';
+      style += 'background-size: ' + sum + 'px ' + (Math.tan(deg) * sum) + 'px';
+
+      return style;
+    }
+
     function update() {
       angle = parseInt($angleEl.val());
       colors = getColors();
@@ -73,7 +120,7 @@
     }
 
     function randomHexColor() {
-      return '#' + Math.random().toString(16).slice(2, 8);
+      return Math.random().toString(16).slice(2, 8);
     }
 
     function addColorHandler(e) {
@@ -81,9 +128,9 @@
 
 
       var template = '<tr>' +
-        '<td><a href="" class="remove-color glyphicon glyphicon-remove"></a></td>' +
+          '<td><a href="" class="remove-color glyphicon glyphicon-remove"></a></td>' +
           '<td>' +
-            '<input name="stripe-color[]" class="colorpicker" value="' + randomHexColor() + '">' +
+            '<input name="stripe-color[]" class="color" value="' + randomHexColor() + '">' +
           '</td>' +
           '<td>' +
             '<input type="range" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />' +
@@ -97,8 +144,11 @@
           '</td>' +
         '</tr>';
 
+      console.log($(template).find('.color').first());
+      console.log($(template).find('.color')[0]);
       $('#colors tbody').append(template);
       update();
+      jscolor.init();
     }
 
     function removeColorHandler(e) {
@@ -140,4 +190,4 @@
   }
 
 
-})(window.jQuery, document);
+})(window.jQuery, document, window.Math, window.jscolor);

@@ -30,3 +30,11 @@ html, body {
 .row.expand {
     height: auto;
 }
+
+h1 {
+    text-shadow: 0 2px rgb(207, 206, 206);
+}
+
+input[type="text"] {
+    text-align: center;
+}

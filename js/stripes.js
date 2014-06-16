@@ -55,58 +55,11 @@
         sum += colors[i].weight/2;
       }
 
-//      style += 'background-image: -moz-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -o-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -ms-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+      style += 'background-image: -moz-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+      style += 'background-image: -o-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
+      style += 'background-image: -ms-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
       style += 'background-image: repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');';
-
-      return style;
-    }
-
-    function compileBackgroundPercents(angle, colors) {
-      var style = "";
-      var gradients = [];
-      var sum = 0;
-      var i = 0;
-      //first color is always background-color
-      if (colors[i]) {
-        style = "background-color:" + colors[i].color + ";";
-        gradients.push('transparent');
-        //half of blur percent of color weight in the beginning
-        gradients.push('transparent ' + (colors[i].weight/2 - colors[i].blur / 2) + '%');
-        sum += colors[i].weight / 2;
-      }
-
-//      red (bkgrnd) 20px
-//      green 30px
-//      yellow 10px
-//
-//      60px = 50%
-
-
-      for (i = 1; i < colors.length; i++) {
-        gradients.push(colors[i].color + ' ' + (sum + colors[i].blur / 2) + "%");
-        gradients.push(colors[i].color + ' ' + (sum + colors[i].weight - colors[i].blur / 2) + "%");
-        sum += colors[i].weight;
-      }
-
-      //lopping the first element
-      i = 0;
-      if (colors[i]) {
-        //half of blur percent of color weight in the end
-        gradients.push('transparent ' + (sum + colors[i].blur / 2) + '%');
-        gradients.push('transparent ' + (sum + colors[i].weight / 2) + '%');
-
-        sum += colors[i].weight / 2;
-      }
-
-//      style += 'background-image: -moz-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -o-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-//      style += 'background-image: -ms-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-      style += 'background-image: repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');';
-      style += 'background-size: ' + sum + 'px ' + (Math.tan(deg) * sum) + 'px';
 
       return style;
     }
@@ -116,7 +69,6 @@
       colors = getColors();
       style = compileBackground(angle, colors);
       $target.attr('style', style);
-      console.log(style);
     }
 
     function randomHexColor() {
@@ -144,8 +96,6 @@
           '</td>' +
         '</tr>';
 
-      console.log($(template).find('.color').first());
-      console.log($(template).find('.color')[0]);
       $('#colors tbody').append(template);
       update();
       jscolor.init();

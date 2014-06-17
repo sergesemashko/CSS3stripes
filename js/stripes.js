@@ -10,6 +10,7 @@
   function StripesController() {
     var $angleEl = $('#stripes-angle');
     var $target = $('#test-background');
+    var $code = $('#code');
     var angle = $angleEl.val();
     var colors = [];
     var gradients = [];
@@ -32,7 +33,7 @@
       var i = 0;
       //first color is always background-color
       if (colors[i]) {
-        style = "background-color:" + colors[i].color + ";";
+        style = "background-color:" + colors[i].color + ";\n";
         gradients.push('transparent');
         //half of blur percent of color weight in the beginning
         gradients.push('transparent ' + (colors[i].weight/2 - colors[i].blur / 2) + 'px');
@@ -55,11 +56,8 @@
         sum += colors[i].weight/2;
       }
 
-      style += 'background-image: -moz-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-      style += 'background-image: -o-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-      style += 'background-image: -ms-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');'
-      style += 'background-image: repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');';
+      style += 'background-image: -webkit-repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');\n'
+      style += 'background-image: repeating-linear-gradient(' + angle + 'deg, ' + gradients.join(', ') + ');\n';
 
       return style;
     }
@@ -69,6 +67,7 @@
       colors = getColors();
       style = compileBackground(angle, colors);
       $target.attr('style', style);
+      $code.text(style);
     }
 
     function randomHexColor() {
@@ -86,12 +85,12 @@
           '</td>' +
           '<td>' +
             '<input type="range" class="stripe-size" name="stripe-size[]" min="1" max="50" value="10" />' +
-            '<input type="text" class="stripe-size-pixels" name="stripe-size-pixels[1]" value="10" size="3" maxlength="3" />' +
+            '<input type="text" class="stripe-size-pixels" name="stripe-size-pixels[1]" value="10" size="3" maxlength="3" /> ' +
             '<em>px</em>'+
           '</td>' +
           '<td>' +
             '<input type="range" class="stripe-blur" name="stripe-blur[]" min="0" max="100" value="0" />' +
-            '<input type="text" class="stripe-blur-pixels" name="stripe-blur-pixels[]" value="0" size="3" maxlength="3" />' +
+            '<input type="text" class="stripe-blur-pixels" name="stripe-blur-pixels[]" value="0" size="3" maxlength="3" /> ' +
             '<em>%</em>' +
           '</td>' +
         '</tr>';

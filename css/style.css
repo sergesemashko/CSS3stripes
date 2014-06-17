@@ -38,3 +38,8 @@ h1 {
 input[type="text"] {
     text-align: center;
 }
+
+#code {
+    width: 100%;
+    min-height: 200px;
+}
